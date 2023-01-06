@@ -2,10 +2,16 @@ import React from 'react';
 
 export default function MySelect({defaultValue, options, value, onChange}) {
 	return (
-    <select 
-			value={value} 
-			onChange={(e) => onChange(e.target.value)}
-		>
+    <select
+      style={{ 
+				padding: "5px 15px", 
+				color: "teal", 
+				background: "transparent",
+				border: "1ps solid teal"
+			}}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
       <option disabled value="">
         {defaultValue}
       </option>
