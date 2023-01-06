@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './MySelect.module.css'
 
 export default function MySelect({defaultValue, options, value, onChange}) {
 	return (
