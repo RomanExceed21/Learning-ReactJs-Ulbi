@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import PostForm from './components/PostForm';
 import PostsList from './components/PostsList';
-import MyButton from './components/UI/button/MyButton';
-import MyInput from './components/UI/input/MyInput';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -11,30 +10,13 @@ function App() {
     { id: 4, title: "JavaScript 4", body: "Description" },
   ]);
 
-  const [title, setTitle] = useState('');
-  const bodyInputRef = useRef()
- 
-  function addPost(e) {
-    e.preventDefault()
-    console.log(title);
-    console.log(bodyInputRef.current.value);
+  function createPost(newPost) {
+    setPosts([...posts, newPost]);
   }
+
   return (
     <div className="App">
-      <form>
-        <MyInput
-          value={title}
-          type="text"
-          placeholder="Название поста"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <MyInput 
-          ref={bodyInputRef} 
-          type="text" 
-          placeholder="Описание поста" 
-        />
-        <MyButton onClick={addPost}>Добавить пост</MyButton>
-      </form>
+      <PostForm create={createPost}/>
       <PostsList posts={posts} title="Посты про JS" />
     </div>
   );
