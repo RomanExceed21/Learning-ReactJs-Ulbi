@@ -1,16 +1,19 @@
 import React from 'react';
 import '../styles/App.css'
+import MyButton from './UI/button/MyButton';
 
-export default function PostItem({post}) {
+export default function PostItem({post, number}) {
 	return (
     <div>
       <div className="post">
         <div className="post__content">
-          <strong>{post.id}. {post.title}</strong>
+          <strong>
+            {number}. {post.title}
+          </strong>
           <div>{post.body}</div>
         </div>
         <div className="post__btns">
-          <button>Удалить</button>
+          <MyButton>Удалить</MyButton>
         </div>
       </div>
     </div>
