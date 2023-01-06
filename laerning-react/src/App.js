@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
+import { usePosts } from './hooks/usePosts';
 import PostForm from './components/PostForm';
 import PostsList from './components/PostsList';
 import PostFilter from './components/PostFilter';
@@ -15,20 +16,7 @@ function App() {
 
   const [filter, setFilter] = useState({sort: "", query: ""})
   const [visible, setVisible] = useState(false)
-
-  const sortedPosts = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort((a, b) =>
-        a[filter.sort].localeCompare(b[filter.sort])
-      );
-    } else {
-      return posts;
-    }
-  }, [filter.sort, posts])
-
-  const sortedAndSerchedPosts = useMemo(() =>{
-    return sortedPosts.filter((post) => post.title.toLocaleLowerCase().includes(filter.query));
-  }, [filter.query, sortedPosts])
+  const sortedAndSerchedPosts = usePosts(posts, filter.sort, filter.query)
 
   function createPost(newPost) {
     setPosts([...posts, newPost]);
